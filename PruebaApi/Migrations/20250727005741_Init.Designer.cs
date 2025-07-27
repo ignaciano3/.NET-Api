@@ -12,7 +12,7 @@ using PruebaApi.Data;
 namespace PruebaApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250623020721_Init")]
+    [Migration("20250727005741_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -172,6 +172,69 @@ namespace PruebaApi.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PruebaApi.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "I really liked this product!",
+                            CreatedAt = new DateTime(2025, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1,
+                            Title = "Great Product"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "It works as expected.",
+                            CreatedAt = new DateTime(2025, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1,
+                            Title = "Not bad"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "Had some issues.",
+                            CreatedAt = new DateTime(2025, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2,
+                            Title = "Could be better"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "Highly recommend!",
+                            CreatedAt = new DateTime(2025, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 3,
+                            Title = "Excellent"
+                        });
+                });
+
             modelBuilder.Entity("PruebaApi.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -194,6 +257,29 @@ namespace PruebaApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Description 1",
+                            Name = "Product 1",
+                            Price = 10.00m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Description 2",
+                            Name = "Product 2",
+                            Price = 20.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Description 3",
+                            Name = "Product 3",
+                            Price = 30.00m
+                        });
                 });
 
             modelBuilder.Entity("PruebaApi.Models.User", b =>
@@ -310,6 +396,22 @@ namespace PruebaApi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PruebaApi.Models.Comment", b =>
+                {
+                    b.HasOne("PruebaApi.Models.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("PruebaApi.Models.Product", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

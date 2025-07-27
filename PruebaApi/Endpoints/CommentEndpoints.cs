@@ -63,10 +63,10 @@ namespace PruebaApi.Endpoints
 
             if (comment is null)
             {
-                return TypedResults.NoContent();
+                return TypedResults.NotFound();
             }
 
-            return TypedResults.NotFound();
+            return TypedResults.NoContent();
         }
 
         private static async Task<Results<NoContent, NotFound>> Delete(int id, ICommentRepository repository)

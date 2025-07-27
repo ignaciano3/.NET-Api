@@ -18,6 +18,14 @@ namespace PruebaApi.Data
         {
             base.OnModelCreating(builder);
 
+            /*
+            {
+              "username": "admin",
+              "email": "admin@mail.com",
+              "password": "Admin123*"
+            }
+            */
+             
             // Seed roles
             List<IdentityRole> roles =
             [
@@ -34,6 +42,32 @@ namespace PruebaApi.Data
                 new() { Id = 3, Name = "Product 3", Description = "Description 3", Price = 30.00M }
             ];
             builder.Entity<Product>().HasData(products);
+
+                // Seed comments
+                List<Comment> comments =
+                [
+                    new()
+                    {
+                        Id = 1, ProductId = 1, Title = "Great Product", Content = "I really liked this product!",
+                        CreatedAt = new DateTime(2025, 7, 24)
+                    },
+                    new()
+                    {
+                        Id = 2, ProductId = 1, Title = "Not bad", Content = "It works as expected.",
+                        CreatedAt = new DateTime(2025, 7, 25)
+                    },
+                    new()
+                    {
+                        Id = 3, ProductId = 2, Title = "Could be better", Content = "Had some issues.",
+                        CreatedAt = new DateTime(2025, 7, 25)
+                    },
+                    new()
+                    {
+                        Id = 4, ProductId = 3, Title = "Excellent", Content = "Highly recommend!",
+                        CreatedAt = new DateTime(2025, 7, 26)
+                    }
+                ];
+            builder.Entity<Comment>().HasData(comments);
 
             // Configure one-to-many relationship: Product has many Comments
             builder.Entity<Product>()
