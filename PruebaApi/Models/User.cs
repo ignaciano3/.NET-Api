@@ -6,3 +6,10 @@ namespace PruebaApi.Models
     {
     }
 }
+/*
+{
+  "username": "admin",
+  "email": "admin@mail.com",
+  "password": "Admin123*"
+}
+*/

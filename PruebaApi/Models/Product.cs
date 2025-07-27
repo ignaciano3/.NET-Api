@@ -12,5 +12,6 @@ namespace PruebaApi.Models
         public decimal Price { get; set; }
 
         public List<Comment> Comments { get; set; } = new();
+        public List<Vendor> Vendors { get; set; } = new();
     }
 }
