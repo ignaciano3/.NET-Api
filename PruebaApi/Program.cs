@@ -57,6 +57,8 @@ builder.Services.AddAuthorizationBuilder()
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IVendorRepository, VendorRepository>();
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
@@ -81,6 +83,7 @@ app.UseAuthorization();
 app.MapAccounts();
 app.MapProducts();
 app.MapComments();
+app.MapVendors();
 
 
 app.Run();
