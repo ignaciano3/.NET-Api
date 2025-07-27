@@ -13,13 +13,5 @@ namespace PruebaApi.Repository
             _context = context;
         }
 
-        public async Task<List<Product>> GetProductsFromVendor(int vendorId)
-        {
-            var vendor = await _context.Vendors
-                .Include(v => v.Products)
-                .FirstOrDefaultAsync(v => v.Id == vendorId);
-
-            return vendor?.Products ?? [];
-        }
     }
 }

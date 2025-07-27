@@ -60,5 +60,11 @@ namespace PruebaApi.Repository
         {
             return await _context.Products.AnyAsync(p => p.Id == id);
         }
+        public async Task<List<Product>> GetProductsFromVendor(int vendorId)
+        {
+            return await _context.Products
+                .Where(p => p.Vendors.Any(v => v.Id == vendorId))
+                .ToListAsync();
+        }
     }
 }

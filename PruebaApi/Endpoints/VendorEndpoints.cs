@@ -73,9 +73,9 @@ namespace PruebaApi.Endpoints
             return ok ? TypedResults.NoContent() : TypedResults.NotFound();
         }
 
-        private static async Task<List<ProductDto>> GetAllProducts(int id, IVendorRepository repository)
+        private static async Task<List<ProductDto>> GetAllProducts(int id, IProductRepository productRepo)
         {
-            var products = await repository.GetProductsFromVendor(id);
+            var products = await productRepo.GetProductsFromVendor(id);
             return products.Select(p => p.ToProductDto()).ToList();
         }
     }
