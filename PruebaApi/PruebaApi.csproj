@@ -20,7 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.6" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.4.22" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.6.4" />
   </ItemGroup>
 
   <ItemGroup>

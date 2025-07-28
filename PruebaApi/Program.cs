@@ -67,11 +67,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference(options => options
+    app.MapScalarApiReference("/docs",options => options
         .WithDefaultHttpClient(ScalarTarget.Node, ScalarClient.Fetch)
         .WithTitle("API Reference Pruebas")
         .WithTheme(ScalarTheme.Solarized)
-        .WithDownloadButton(false)
+        .WithDocumentDownloadType(DocumentDownloadType.None)
     );
 }
 
