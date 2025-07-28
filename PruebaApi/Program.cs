@@ -80,10 +80,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapAccounts();
-app.MapProducts();
-app.MapComments();
-app.MapVendors();
+app.MapEndpoints();
 
 
 app.Run();
