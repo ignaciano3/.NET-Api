@@ -2,7 +2,7 @@
 using PruebaApi.Data;
 using PruebaApi.Interfaces;
 
-namespace PruebaApi.Repository
+namespace PruebaApi.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {

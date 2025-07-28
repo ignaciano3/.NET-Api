@@ -3,7 +3,7 @@ using PruebaApi.Data;
 using PruebaApi.Interfaces;
 using PruebaApi.Models;
 
-namespace PruebaApi.Repository
+namespace PruebaApi.Repositories
 {
     public class ProductRepository: IProductRepository
     {

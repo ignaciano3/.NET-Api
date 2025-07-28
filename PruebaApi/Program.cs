@@ -7,7 +7,7 @@ using PruebaApi.Data;
 using PruebaApi.Endpoints;
 using PruebaApi.Interfaces;
 using PruebaApi.Models;
-using PruebaApi.Repository;
+using PruebaApi.Repositories;
 using PruebaApi.Services;
 using Scalar.AspNetCore;
 
@@ -55,9 +55,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<IVendorRepository, VendorRepository>();
+builder.Services.AddRepositories();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 
