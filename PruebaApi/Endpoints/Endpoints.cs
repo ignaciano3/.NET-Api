@@ -8,6 +8,7 @@
             app.MapProducts();
             app.MapVendors();
             app.MapComments();
+            app.MapReports();
 
             return app;
         }
