@@ -58,6 +58,7 @@ builder.Services.AddAuthorizationBuilder()
 builder.Services.AddRepositories();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<PdfService>();
 
 var app = builder.Build();
 
