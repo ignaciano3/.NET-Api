@@ -1,0 +1,76 @@
+﻿@page "/products/create"
+@page "/products/{id:int}"
+
+@using Frontend.Interfaces
+@using PruebaApi.Dtos.Product
+@using Frontend.Components.Core
+@inject IApiClient ApiClient
+
+@if (Id is null)
+{
+	<h3>Creando un nuevo Producto</h3>
+}
+else
+{
+	<h3>Editando a @Product.Name</h3>
+}
+
+<EditForm Model="Product" OnSubmit="HandleSubmit" FormName="EditProductForm">
+	<div class="form-group">
+		<label for="name">Nombre:</label>
+		<InputText @bind-Value="Product.Name" class="form-control" Id="name" />
+	</div>
+
+	<div class="form-group">
+		<label for="description">Descripción:</label>
+		<InputTextArea @bind-Value="Product.Description" class="form-control" />
+	</div>
+
+	<div class="form-group">
+		<label for="price">Precio:</label>
+		<InputNumber @bind-Value="Product.Price" class="form-control" />
+	</div>
+
+	<div class="mt-4 gap-4 d-inline-flex">
+		<button type="submit" class="btn btn-primary">Guardar</button>
+		@if (Id is not null)
+		{
+			<DeleteProductButton Id="Id.Value"/>
+		}
+		<a href="/products">
+			<button type="button" class="btn btn-info">
+				Volver
+			</button>
+		</a>
+	</div>
+</EditForm>
+
+@code {
+	[Parameter]
+	public int? Id { get; set; }
+
+	[SupplyParameterFromForm]
+	UpdateProductDto Product { get; set; } = new();
+
+	protected override async Task OnParametersSetAsync()
+	{
+		if (Id is not null)
+		{
+			Product = await ApiClient.GetProductByIdAsync(Id.Value);
+		}
+	}
+
+	private async Task HandleSubmit()
+	{
+		if (Id is null)
+		{
+			await ApiClient.AddProductAsync(Product);
+		}
+		else
+		{
+			await ApiClient.EditProductAsync(Product, Id.Value);
+		}
+
+	}
+
+}

@@ -1,0 +1,16 @@
+﻿@using Frontend.Interfaces
+@rendermode InteractiveServer
+@inject IApiClient ApiClient
+
+<button type="button" class="btn btn-danger" @onclick="DeleteProduct">Borrar</button>
+
+@code {
+	[Parameter]
+	public int Id { get; set; }
+	
+	private async Task DeleteProduct()
+	{
+		await ApiClient.DeleteProductAsync(Id);
+	}
+
+}

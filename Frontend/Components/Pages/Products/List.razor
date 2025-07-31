@@ -1,0 +1,60 @@
+﻿@page "/products"  
+@using Frontend.Interfaces  
+@using PruebaApi.Models  
+@using Frontend.Components.Core  
+@attribute [StreamRendering]  
+
+@inject IApiClient ApiClient  
+
+<h3>Listado de Productos</h3>
+
+<a href="/products/create">
+	<button type="button" class="btn btn-secondary">Crear Nuevo Producto</button>
+</a>
+
+@if (products == null)  
+{  
+	<p><em>Cargando los productos</em></p>  
+}  
+else  
+{  
+	<table class="table">  
+		<thead>  
+			<tr>  
+				<th>Id</th>  
+				<th>Nombre</th>  
+				<th>Precio</th>  
+				<th>Descripción</th>  
+				<th>Acciones</th>  
+			</tr>  
+		</thead>  
+		<tbody>  
+			@foreach (var product in products)  
+			{  
+				<tr>  
+					<td>@product.Id</td>  
+					<td>@product.Name</td>  
+					<td>@product.Price.ToString("C")</td>  
+					<td>@product.Description</td>  
+					<td>  
+						<a href="/products/@(product.Id)">  
+							<button type="button" class="btn btn-info">  
+								Editar  
+							</button>  
+						</a>
+						<DeleteProductButton Id="product.Id"/>  
+					</td>  
+				</tr>  
+			}  
+		</tbody>  
+	</table>  
+}
+
+@code {  
+	private List<Product>? products = null;  
+
+	protected override async Task OnInitializedAsync()  
+	{  
+		products = await ApiClient.GetProductsAsync();  
+	}  
+}
