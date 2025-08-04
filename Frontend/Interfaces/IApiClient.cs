@@ -1,5 +1,5 @@
-﻿using PruebaApi.Dtos.Product;
-using PruebaApi.Models;
+﻿using Application.Dtos.Product;
+using Domain.Entities;
 
 namespace Frontend.Interfaces
 {

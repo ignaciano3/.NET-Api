@@ -1,7 +1,7 @@
 ﻿using Frontend.Interfaces;
-using PruebaApi.Models;
 using System.Net.Http.Headers;
-using PruebaApi.Dtos.Product;
+using Application.Dtos.Product;
+using Domain.Entities;
 
 namespace Frontend.Services
 {

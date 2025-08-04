@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Prueba.ServiceDefaults\Prueba.ServiceDefaults.csproj" />
     <ProjectReference Include="..\PruebaApi\PruebaApi.csproj" />
   </ItemGroup>

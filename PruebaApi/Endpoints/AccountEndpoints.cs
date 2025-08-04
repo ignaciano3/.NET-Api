@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Application.Dtos.Account;
+using Infrastructure;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using PruebaApi.Data;
-using PruebaApi.Dtos.Account;
 using PruebaApi.Interfaces;
-using PruebaApi.Mappers;
-using PruebaApi.Models;
 
 namespace PruebaApi.Endpoints
 {

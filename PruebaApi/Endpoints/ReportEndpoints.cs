@@ -1,5 +1,4 @@
-﻿using PruebaApi.Interfaces;
-using PruebaApi.Services;
+﻿using Application.Interfaces;
 
 namespace PruebaApi.Endpoints
 {
@@ -15,7 +14,7 @@ namespace PruebaApi.Endpoints
             return app;
         }
 
-        private static async Task<IResult> GeneratePdfReport(int vendorId, IVendorRepository vendorRepo, PdfService pdfService)
+        private static async Task<IResult> GeneratePdfReport(int vendorId, IVendorRepository vendorRepo, IPdfService pdfService)
         {
             var vendor = await vendorRepo.GetByIdWithProducts(vendorId);
 

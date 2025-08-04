@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using PruebaApi.Dtos.Comment;
-using PruebaApi.Dtos.Product;
-using PruebaApi.Interfaces;
-using PruebaApi.Mappers;
-using PruebaApi.Models;
+﻿using Application.Dtos.Comment;
+using Application.Dtos.Product;
+using Application.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Application.Mappers;
 
 namespace PruebaApi.Endpoints
 {
